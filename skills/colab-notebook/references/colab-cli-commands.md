@@ -1,62 +1,63 @@
-# colab-cli Command Reference
+# colab Command Reference
 
 Source: https://github.com/xeodou/colab-cli
+Binary name: `colab`
 
 ## Commands
 
 ### auth
 Authenticate with Google account via OAuth2.
 ```bash
-colab-cli auth
+colab auth
 ```
-Opens browser for consent. Token cached at `~/.config/colab-cli/token.json`.
+Opens browser for consent. Token cached at `~/.config/colab/token.json`.
 
 ### exec
 Execute code on a Colab runtime.
 ```bash
 # Execute a notebook (all cells)
-colab-cli exec notebook.ipynb
+colab exec notebook.ipynb
 
 # Execute a Python file
-colab-cli exec script.py
+colab exec script.py
 
 # Execute inline code
-colab-cli exec -c "import torch; print(torch.cuda.is_available())"
+colab exec -c "import torch; print(torch.cuda.is_available())"
 ```
 Output is streamed in real-time via WebSocket connection to the Jupyter kernel.
 
 ### upload
 Upload a local file to the Colab runtime filesystem.
 ```bash
-colab-cli upload local_file.ipynb
-colab-cli upload data.csv
+colab upload local_file.ipynb
+colab upload data.csv
 ```
 
 ### download
 Download a file from the Colab runtime to local.
 ```bash
-colab-cli download /content/results.csv ./results.csv
-colab-cli download /content/drive/MyDrive/output.png ./output.png
+colab download /content/results.csv ./results.csv
+colab download /content/drive/MyDrive/output.png ./output.png
 ```
 
 ### quota
 Display remaining Colab compute quota.
 ```bash
-colab-cli quota
+colab quota
 ```
 Shows GPU hours remaining, current runtime type.
 
 ### status
 Show current runtime information.
 ```bash
-colab-cli status
+colab status
 ```
 Shows: connection state, RAM usage, disk usage, GPU type (if any).
 
 ### stop
 Release the current Colab runtime.
 ```bash
-colab-cli stop
+colab stop
 ```
 Frees GPU/TPU resources. Data in `/content/` is lost (use Drive for persistence).
 

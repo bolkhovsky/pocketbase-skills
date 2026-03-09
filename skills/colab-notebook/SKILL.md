@@ -9,35 +9,33 @@ metadata:
 
 # Google Colab Notebook Management
 
-Manage Jupyter notebooks on Google Colab directly from Claude Code using `colab-cli` (xeodou/colab-cli).
+Manage Jupyter notebooks on Google Colab directly from Claude Code using `colab` CLI (xeodou/colab-cli).
 
 ## Prerequisites
 
-Verify `colab-cli` is installed:
+Verify `colab` is installed:
 
 ```bash
-colab-cli --version
+colab --version
 ```
 
 If not installed, install via Go:
 
 ```bash
-go install github.com/xeodou/colab-cli@latest
+go install github.com/xeodou/colab@latest
 ```
 
 Or via curl:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xeodou/colab-cli/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/xeodou/colab/main/install.sh | bash
 ```
 
-Then authenticate (one-time):
+Then authenticate (one-time — opens browser for Google OAuth2):
 
 ```bash
-colab-cli auth
+colab auth
 ```
-
-This opens a browser for Google OAuth2. Token is cached locally.
 
 ## Core Workflow
 
@@ -66,16 +64,16 @@ Common cell operations:
 
 ```bash
 # Upload notebook to Colab
-colab-cli upload notebook.ipynb
+colab upload notebook.ipynb
 
 # Execute the notebook (runs all cells)
-colab-cli exec notebook.ipynb
+colab exec notebook.ipynb
 
 # Execute specific code inline
-colab-cli exec -c "print('hello from Colab')"
+colab exec -c "print('hello from Colab')"
 
 # Execute a Python script
-colab-cli exec script.py
+colab exec script.py
 ```
 
 Output streams in real-time via WebSocket.
@@ -84,27 +82,27 @@ Output streams in real-time via WebSocket.
 
 ```bash
 # Check runtime status (connected, RAM, disk)
-colab-cli status
+colab status
 
 # Check GPU quota remaining
-colab-cli quota
+colab quota
 ```
 
 ### Step 4: Download results
 
 ```bash
 # Download files from Colab runtime
-colab-cli download /content/output.csv ./local_output.csv
+colab download /content/output.csv ./local_output.csv
 
 # Download from Google Drive (if notebook saves there)
-colab-cli download /content/drive/MyDrive/experiment/results.csv ./results.csv
+colab download /content/drive/MyDrive/experiment/results.csv ./results.csv
 ```
 
 ### Step 5: Stop runtime
 
 ```bash
 # Release the Colab runtime when done
-colab-cli stop
+colab stop
 ```
 
 ## Notebook Patterns
@@ -173,7 +171,7 @@ If expected years are missing, the data source path or filename pattern is likel
 
 ## Troubleshooting
 
-### "colab-cli: command not found"
+### "colab: command not found"
 
 Ensure Go bin is in PATH:
 
@@ -183,12 +181,12 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 ### Authentication expired
 
-Re-run `colab-cli auth` to refresh the OAuth2 token.
+Re-run `colab auth` to refresh the OAuth2 token.
 
 ### "Runtime not connected"
 
-The Colab runtime may have disconnected due to idle timeout (90 min) or session limit (12 hours). Run `colab-cli exec` to reconnect, or use Google Drive persistence so data survives reconnection.
+The Colab runtime may have disconnected due to idle timeout (90 min) or session limit (12 hours). Run `colab exec` to reconnect, or use Google Drive persistence so data survives reconnection.
 
 ### Large file transfers are slow
 
-For files over 100 MB, prefer saving to Google Drive from within the notebook rather than downloading via `colab-cli download`. Access Drive files locally via Google Drive desktop sync or `rclone`.
+For files over 100 MB, prefer saving to Google Drive from within the notebook rather than downloading via `colab download`. Access Drive files locally via Google Drive desktop sync or `rclone`.
