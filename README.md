@@ -1,6 +1,6 @@
-# PocketBase Skills for Claude Code
+# Claude Code Skills for PocketBase and Colab
 
-> Teach your AI assistant to build PocketBase backends correctly.
+> Teach your AI assistant domain-specific workflows for PocketBase and Colab.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![PocketBase](https://img.shields.io/badge/PocketBase-0.25+-blueviolet)](https://pocketbase.io)
@@ -8,9 +8,13 @@
 
 ## What This Is
 
-[Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills) are markdown instruction files that auto-activate when your AI assistant encounters relevant tasks. These 6 skills cover PocketBase end-to-end — from schema design to production deployment — so Claude writes correct PocketBase code on the first try.
+[Claude Code Skills](https://docs.anthropic.com/en/docs/claude-code/skills) are markdown instruction files that auto-activate when your AI assistant encounters relevant tasks. This repository is now a multi-skill collection, not a PocketBase-only package: it houses skill packs for PocketBase work and Colab-related workflows under the same repo.
+
+The currently documented skills cover PocketBase end-to-end — from schema design to production deployment — so Claude writes correct PocketBase code on the first try.
 
 Think of them as expert knowledge, distilled into rules that fire at the right moment.
+
+PocketBase is the first fully documented skill set here, and Colab skills live alongside it as part of the broader repository scope.
 
 ## The Problem
 
@@ -28,7 +32,7 @@ Without these skills, AI assistants consistently make the same PocketBase mistak
 
 These 6 skills prevent all of the above and many more.
 
-## Skills Included
+## PocketBase Skills Included
 
 | Skill | Lines | What It Covers | Example Triggers |
 |-------|------:|----------------|------------------|
@@ -40,6 +44,8 @@ These 6 skills prevent all of the above and many more.
 | **pb-deploy** | 363 | Docker, systemd, nginx/Caddy, TLS, S3, backups | "deploy PocketBase", "set up nginx", "configure backups" |
 
 **Total: 1,983 lines** of battle-tested PocketBase knowledge.
+
+This repo is no longer limited to PocketBase skills; it also serves as the home for Colab skills and other skill packs as they are added.
 
 ## Installation
 
@@ -144,13 +150,13 @@ These skills are written for **PocketBase v0.25+** — the major rewrite that la
 
 ## Contributing
 
-**Improve existing skills:** Edit the relevant `skills/pb-*/SKILL.md`, test with Claude Code by having a conversation that triggers it, and submit a PR.
+**Improve existing skills:** Edit the relevant skill under `skills/`, test with Claude Code by having a conversation that triggers it, and submit a PR.
 
-**Add new skills:** Create `skills/pb-<name>/SKILL.md` with YAML frontmatter:
+**Add new skills:** Create `skills/<skill-family>-<name>/SKILL.md` with YAML frontmatter:
 
 ```yaml
 ---
-name: "PocketBase <Topic>"
+name: "<Skill Topic>"
 description: "<When to activate this skill — be specific about trigger conditions>"
 ---
 ```
